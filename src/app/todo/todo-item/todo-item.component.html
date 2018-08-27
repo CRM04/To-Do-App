@@ -1,8 +1,11 @@
-<li class="completed">
+<li [ngClass]="{'completed': todoItem.completado , 'editing': editando}" >
+
   <div class="view">
-    <input class="toggle" type="checkbox" checked>
-    <label>Taste JavaScript</label>
-    <button class="destroy"></button>
+    <input class="toggle" type="checkbox" [formControl]="chckField" [checked]="todoItem.completado">
+
+    <label  (dblclick)="editar()">{{ todoItem.texto }}</label>
+    <button class="destroy" (click)="borrarTodo()"></button>
   </div>
-  <input class="edit" value="Create a TodoMVC template">
+
+  <input class="edit" [value]="todoItem.texto" [formControl]="inputText" #inputFisico (blur)="terminarEdicion()">
 </li>
